@@ -49,10 +49,10 @@ Todo o código estará disponível em meu [Github](https://github.com/ThiagoVale
 
 ```{r echo=FALSE, results='hide', warning=FALSE, message=FALSE}
 # Nova linha para carregar o csv
-tweets <- read.csv("F:\\DataScienceeBigData\\20192S\\TextMining\\TrabalhoFinal\\tweets.csv", sep = ";", header = TRUE )
+tweets <- read.csv("tweets.csv", sep = ";", header = TRUE )
 
 # Carregando as stopwords
-stop_words <- read_delim("F:\\DataScienceeBigData\\20192S\\TextMining\\TrabalhoFinal\\stop_words.csv",
+stop_words <- read_delim("stop_words.csv",
                            ";",escape_double = FALSE, trim_ws = TRUE)
 stop_words <- add_row (stop_words , word  =  "j" )
 stop_words <- add_row (stop_words , word  =  "est" )
@@ -61,7 +61,7 @@ stop_words <- add_row (stop_words , word  =  "al" )
 stop_words <- add_row (stop_words , word  =  "l" )
 
 # Carregando Afinidade
-affin_pt <- read_delim("F:\\DataScienceeBigData\\20192S\\TextMining\\TrabalhoFinal\\affin_pt.csv",
+affin_pt <- read_delim("affin_pt.csv",
                        ";",escape_double = FALSE, trim_ws = TRUE)
 
 # Removendo as urls
