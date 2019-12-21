@@ -60,16 +60,14 @@ access_secret <- "your_access_secret"
 
 setup_twitter_oauth(consumer_key, consumer_secret, access_token, access_secret)
 
-availableTrendLocations() %>% View #Verifica os locais disponíveis para buscar os tweets
-getTrends("455822") %>% View # Verifica os assuntos mais comentados no Twitter no momento
-
-searchTwitteR("futebol") #Localiza os tweets com os critérios solicitados
+#availableTrendLocations() %>% View #Verifica os locais disponíveis para buscar os tweets
+#getTrends("455822") %>% View # Verifica os assuntos mais comentados no Twitter no momento
+#searchTwitteR("futebol") #Localiza os tweets com os critérios solicitados
 
 # Localizando os tweets com mais critérios:
 futebol <- searchTwitteR("futebol -filter:retweets", n=5000, lang = "pt", since = "2019-12-17", until= "2019-12-18", geocode = "-25.4284,-49.2733,500mi")
 flamengo <- searchTwitteR("flamengo -filter:retweets", n=5000, lang = "pt", since = "2019-12-17", until= "2019-12-18", geocode = "-25.4284,-49.2733,500mi")
 liverpool <- searchTwitteR("liverpool -filter:retweets", n=5000, lang = "pt", since = "2019-12-17", until= "2019-12-18", geocode = "-25.4284,-49.2733,500mi")
-
 
 
 # Agrupando os Tweets
@@ -82,10 +80,9 @@ tweets <- tweets %>% twListToDF
 view(tweets)
 
 # Salvando os Tweets em *.csv
-setwd("F:\\DataScienceeBigData\\20192S\\TextMining\\TrabalhoFinal") #seleciona o diretório de destino do arquivo
+setwd("escolha\\seu\\diretorio\\de\\saida") #seleciona o diretório de destino do arquivo
 
 tweets <- subset(tweets, select = c(text, created, screenName)) #seleciona apenas as colunas que nos importa
 view(tweets5)
 
-
-write.table(tweets, file="tweets5.csv", row.names=F, sep = ";") #salva os dados em *.csv
+write.table(tweets, file="tweets.csv", row.names=F, sep = ";") #salva os dados em *.csv
