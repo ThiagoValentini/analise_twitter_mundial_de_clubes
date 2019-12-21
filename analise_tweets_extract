@@ -1,0 +1,91 @@
+# Análise Twitter
+
+# Autor: Thiago Siriaki Valentini
+# Trabalho Final da Disciplina de Text Mining da Professora Jasmine Moreira
+# Universidade Positivo
+# Curitiba, 20 de Dezembro de 2019.
+
+# Download dos Pacotes
+install.packages("tidyverse")
+install.packages("twitteR")
+install.packages("pdftools")
+install.packages("tibble")
+install.packages("dplyr")
+install.packages("tidytext")
+install.packages("readr")
+install.packages("tm")
+install.packages("wordcloud")
+install.packages("ggplot2")
+install.packages("tidyr")
+install.packages("igraph")
+install.packages("ggraph")
+install.packages("widyr")
+install.packages("stringr")
+install.packages("topicmodels")
+install.packages("ldatuning")
+install.packages("wesanderson") # Paleta de cores
+install.packages("RColorBrewer")
+install.packages("rmarkdown")
+
+# Carregando os Pacotes
+library(tidyverse)
+library(twitteR)
+library(pdftools)
+library(tibble)
+library(dplyr)
+library(tidytext)
+library(readr)
+library(tm)
+library(wordcloud)
+library(ggplot2)
+library(tidyr)
+library(igraph)
+library(ggraph)
+library(widyr)
+library(stringr)
+library(topicmodels)
+library(ldatuning)
+library(wesanderson)
+library(RColorBrewer)
+library(rmarkdown)
+
+# Acessando os dados
+
+consumer_key <- "GyS5bYAn97cWfylaao86kbnB3"
+consumer_secret <- "SJNhVPr2N3cIUG0tBotumkDm8wFRXPlZmwzavQiW87Rvx6lC5Y"
+access_token <- "129699641-mXL3LiM55bHVEaNBbGJBqVllIjRsPU1sFtoYrA2y"
+access_secret <- "ddoAQ9Uf7KSRNSQ80ex2pfs4Adjr5c6YYu3VeQfjF724o"
+
+# Conectando
+
+setup_twitter_oauth(consumer_key, consumer_secret, access_token, access_secret)
+
+availableTrendLocations() %>% View #Verifica os locais disponíveis para buscar os tweets
+getTrends("455822") %>% View # Verifica os assuntos mais comentados no Twitter no momento
+
+searchTwitteR("futebol") #Localiza os tweets com os critérios solicitados
+
+# Localizando os tweets com mais critérios:
+futebol <- searchTwitteR("futebol -filter:retweets", n=5000, lang = "pt", since = "2019-12-17", until= "2019-12-18", geocode = "-25.4284,-49.2733,500mi")
+flamengo <- searchTwitteR("flamengo -filter:retweets", n=5000, lang = "pt", since = "2019-12-17", until= "2019-12-18", geocode = "-25.4284,-49.2733,500mi")
+liverpool <- searchTwitteR("liverpool -filter:retweets", n=5000, lang = "pt", since = "2019-12-17", until= "2019-12-18", geocode = "-25.4284,-49.2733,500mi")
+
+
+
+# Agrupando os Tweets
+tweets <- c(futebol,
+            flamengo,
+            liverpool)
+
+# Transformando os Tweets em um DataFrame
+tweets <- tweets %>% twListToDF
+view(tweets)
+
+# Salvando os Tweets em *.csv
+setwd("F:\\DataScienceeBigData\\20192S\\TextMining\\TrabalhoFinal") #seleciona o diretório de destino do arquivo
+
+tweets <- subset(tweets, select = c(text, created, screenName)) #seleciona apenas as colunas que nos importa
+view(tweets5)
+
+
+write.table(tweets, file="tweets5.csv", row.names=F, sep = ";") #salva os dados em *.csv
