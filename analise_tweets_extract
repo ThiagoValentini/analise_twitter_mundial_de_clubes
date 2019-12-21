@@ -51,10 +51,10 @@ library(rmarkdown)
 
 # Acessando os dados
 
-consumer_key <- "GyS5bYAn97cWfylaao86kbnB3"
-consumer_secret <- "SJNhVPr2N3cIUG0tBotumkDm8wFRXPlZmwzavQiW87Rvx6lC5Y"
-access_token <- "129699641-mXL3LiM55bHVEaNBbGJBqVllIjRsPU1sFtoYrA2y"
-access_secret <- "ddoAQ9Uf7KSRNSQ80ex2pfs4Adjr5c6YYu3VeQfjF724o"
+consumer_key <- "your_consumer_key"
+consumer_secret <- "your_consumer_secret"
+access_token <- "your_access_token"
+access_secret <- "your_access_secret"
 
 # Conectando
 
